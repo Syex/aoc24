@@ -1,21 +1,80 @@
+import kotlin.math.absoluteValue
+
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
-    }
+    part1TestInput()
+    part1()
+    part2TestInput()
+    part2()
+}
 
-    fun part2(input: List<String>): Int {
-        return input.size
-    }
+private fun parseInput(testInput: List<String>) = testInput.map {
+    val numbers = it.trim().split("   ")
+    numbers[0].toInt() to numbers[1].toInt()
+}.unzip()
 
-    // Test if implementation meets criteria from the description, like:
-    check(part1(listOf("test_input")) == 1)
+private fun part1TestInput() {
+    val testInput = """
+        3   4
+        4   3
+        2   5
+        1   3
+        3   9
+        3   3
+    """.trimIndent().lines()
 
-    // Or read a large test input from the `src/Day01_test.txt` file:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    val (firstList, secondList) = parseInput(testInput)
 
-    // Read the input from the `src/Day01.txt` file.
+    val distance = getTotalDistance(firstList, secondList)
+    println("Distance of test input: $distance")
+
+    check(distance == 11)
+}
+
+private fun part1() {
     val input = readInput("Day01")
-    part1(input).println()
-    part2(input).println()
+
+    val (firstList, secondList) = parseInput(input)
+
+    val distance = getTotalDistance(firstList, secondList)
+    println("Distance of part1 input: $distance")
+}
+
+private fun getTotalDistance(firstList: List<Int>, secondList: List<Int>): Int {
+    val sortedFirstList = firstList.sorted()
+    val sortedSecondList = secondList.sorted()
+
+    return sortedFirstList.mapIndexed { index, i ->
+        (i - sortedSecondList[index]).absoluteValue
+    }.sum()
+}
+
+private fun part2TestInput() {
+    val testInput = """
+        3   4
+        4   3
+        2   5
+        1   3
+        3   9
+        3   3
+    """.trimIndent().lines()
+
+    val (firstList, secondList) = parseInput(testInput)
+
+    val similarityScore = getSimilarityScore(firstList, secondList)
+    println("Similarity score of test input: $similarityScore")
+
+    check(similarityScore == 31)
+}
+
+private fun part2() {
+    val input = readInput("Day01")
+
+    val (firstList, secondList) = parseInput(input)
+
+    val similarityScore = getSimilarityScore(firstList, secondList)
+    println("Similarity score of part2 input: $similarityScore")
+}
+
+private fun getSimilarityScore(firstList: List<Int>, secondList: List<Int>): Int {
+    return firstList.fold(0) { acc, i -> acc + (i * secondList.count { it == i }) }
 }
