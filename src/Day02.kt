@@ -29,7 +29,7 @@ private fun part1TestInput() {
 }
 
 private fun part1() {
-    val input = readInput("Day02")
+    val input = readInputLines("Day02")
     val reports = parseInput(input)
     val safeReports = reports.count { isReportSafe(it) }
     println("Part1: $safeReports")
@@ -81,7 +81,7 @@ private fun part2TestInput() {
 }
 
 private fun part2() {
-    val input = readInput("Day02")
+    val input = readInputLines("Day02")
     val reports = parseInput(input)
     val safeReports = reports.count { isReportSafePart2(it) }
     println("Part2: $safeReports")

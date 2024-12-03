@@ -31,7 +31,7 @@ private fun part1TestInput() {
 }
 
 private fun part1() {
-    val input = readInput("Day01")
+    val input = readInputLines("Day01")
 
     val (firstList, secondList) = parseInput(input)
 
@@ -67,7 +67,7 @@ private fun part2TestInput() {
 }
 
 private fun part2() {
-    val input = readInput("Day01")
+    val input = readInputLines("Day01")
 
     val (firstList, secondList) = parseInput(input)
 
