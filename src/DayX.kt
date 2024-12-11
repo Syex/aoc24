@@ -43,7 +43,7 @@ private fun part2TestInput() {
 }
 
 private fun part2() {
-    val input = readInputLines("Day0")
+    val input = readInputLines("Day")
 
     println("Part2: ")
 }
