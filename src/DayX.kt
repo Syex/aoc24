@@ -1,8 +1,18 @@
+import kotlin.system.measureTimeMillis
+
 fun main() {
-    part1TestInput()
-    part1()
-    part2TestInput()
-    part2()
+    measureTimeMillis {
+        part1TestInput()
+    }.also { println("Part1 Test finished in $it ms") }
+    measureTimeMillis {
+        part1()
+    }.also { println("Part1 finished in $it ms") }
+    measureTimeMillis {
+        part2TestInput()
+    }.also { println("Part2 Test finished in $it ms") }
+    measureTimeMillis {
+        part2()
+    }.also { println("Part2 finished in $it ms") }
 }
 
 private fun parseInput(testInput: List<String>) = testInput.map {
